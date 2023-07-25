@@ -112,13 +112,13 @@ jobs:
         run: dotnet restore
 
       - name: Build and Publish project
-        run: dotnet publish --configuration Release --output /publish/myapp
+        run: dotnet publish --configuration Release --output ./publish
         
       - name: Copy to Windows Server
         uses: garygrossgarten/github-action-ssh@release
         with:
-          local: /publish/myapp
-          remote: /inetpb/chatjafartest.com
+          local: ./publish
+          remote: "C:\\inetpub\\chat.jafartest.com"
           host: ${{ secrets.WINDOWS_SERVER_HOST }}
           username: ${{ secrets.WINDOWS_SERVER_USERNAME }}
           password: ${{ secrets.WINDOWS_SERVER_PASSWORD }}
