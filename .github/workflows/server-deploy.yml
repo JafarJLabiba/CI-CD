@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.WINDOWS_SERVER_USERNAME }}
           password: ${{ secrets.WINDOWS_SERVER_PASSWORD }}
           port: ${{ secrets.WINDOWS_SERVER_PORT }}
-          command: Copy-Item -Recurse -Force ./publish/* "C:\inetpub\chat.jafartest.com"
+          command: powershell -Command "Copy-Item -Recurse -Force ./publish/* C:\inetpub\chat.jafartest.com"
