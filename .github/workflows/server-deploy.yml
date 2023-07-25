@@ -23,13 +23,12 @@ jobs:
 
       - name: Build and Publish project
         run: dotnet publish --configuration Release --output ./publish
-
+        
       - name: Copy to Windows Server
-        uses: appleboy/ssh-action@master
+        uses: garygrossgarten/github-action-ssh@release
         with:
           host: ${{ secrets.WINDOWS_SERVER_HOST }}
           username: ${{ secrets.WINDOWS_SERVER_USERNAME }}
           password: ${{ secrets.WINDOWS_SERVER_PASSWORD }}
           port: ${{ secrets.WINDOWS_SERVER_PORT }}
-          script: |
-            Copy-Item -Recurse -Force ./publish/* "C:\inetpub\chat.jafartest.com"
+          command: Copy-Item -Recurse -Force ./publish/* "C:\inetpub\chat.jafartest.com"
